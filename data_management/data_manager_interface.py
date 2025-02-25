@@ -12,6 +12,10 @@ class DataManagerInterface(ABC):
         """Returns all movies for a given user."""
         pass
 
+    def get_user_by_id(self, user_id):
+        """Returns a user identified by ID"""
+        pass
+
     @abstractmethod
     def add_user(self, name):
         """Adds a new user and returns the user ID."""
@@ -20,6 +24,10 @@ class DataManagerInterface(ABC):
     @abstractmethod
     def delete_user(self, user_id):
         """Deletes a user and all their movies."""
+        pass
+
+    def get_movie_by_id(self, movie_id):
+        """Returns a movie identified by ID"""
         pass
 
     @abstractmethod

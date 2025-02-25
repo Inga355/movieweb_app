@@ -62,6 +62,12 @@ class SQLiteDataManager(DataManagerInterface):
             session.commit()
         session.close()
 
+    def get_movie_by_id(self, movie_id):
+        session = self.Session()
+        movie = session.query(Movie).filter_by(id=movie_id).first()
+        session.close()
+        return movie
+
     def add_movie(self, user_id, name, director, year, rating):
         session = self.Session()
         new_movie = Movie(user_id=user_id, name=name, director=director, year=year, rating=rating)
@@ -93,3 +99,5 @@ class SQLiteDataManager(DataManagerInterface):
                 movie.rating = rating
             session.commit()
         session.close()
+
+
