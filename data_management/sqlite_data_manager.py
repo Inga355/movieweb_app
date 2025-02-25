@@ -44,6 +44,7 @@ class SQLiteDataManager(DataManagerInterface):
         new_user = User(name=name)
         session.add(new_user)
         session.commit()
+        session.refresh(new_user)
         session.close()
         return new_user.id
 
@@ -60,6 +61,7 @@ class SQLiteDataManager(DataManagerInterface):
         new_movie = Movie(user_id=user_id, name=name, director=director, year=year, rating=rating)
         session.add(new_movie)
         session.commit()
+        session.refresh(new_movie)
         session.close()
         return new_movie.id
 
