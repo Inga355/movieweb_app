@@ -33,6 +33,12 @@ class SQLiteDataManager(DataManagerInterface):
         session.close()
         return users
 
+    def get_user_by_id(self, user_id):
+        session = self.Session()
+        user = session.query(User).filter_by(id=user_id).first()
+        session.close()
+        return user
+
     def get_user_movies(self, user_id):
         session = self.Session()
         movies = session.query(Movie).filter_by(user_id=user_id).all()

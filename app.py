@@ -14,10 +14,13 @@ def home():
     return render_template('users.html', users=users)
 
 
-@app.route('/users')
-def users():
-    users = db_manager.get_all_users()
-    return render_template('users.html')
+@app.route('/users/<int:user_id>')
+def user_movies(user_id):
+    user = db_manager.get_user_by_id(user_id)
+    movies = db_manager.get_user_movies(user_id)
+    return render_template('user_movies.html', user=user, movies=movies)
+
+
 
 
 
