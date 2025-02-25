@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from data_management.sqlite_data_manager import SQLiteDataManager
 import requests
 
@@ -21,7 +21,13 @@ def user_movies(user_id):
     return render_template('user_movies.html', user=user, movies=movies)
 
 
-
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    if request.method == 'POST':
+        name = request.form['name']
+        db_manager.add_user(name)
+        return redirect(url_for('home'))
+    return render_template('add_user.html')
 
 
 
