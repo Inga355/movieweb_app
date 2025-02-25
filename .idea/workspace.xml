@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04fc04f4-3838-4684-957f-67934f2823ec" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/add_movie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/update_movie.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
