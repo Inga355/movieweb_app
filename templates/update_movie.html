@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Update Movie - MovieWeb App</title>
 </head>
 <body>
+    <header>
+        <div class="header">
+            <h1>My Movie Database</h1>
+        </div>
+    </header>
     <h1>Update Movie for {{ user.name }}</h1>
     <form method="post" action="/users/{{ user.id }}/update_movie/{{ movie.id }}">
         <label for="name">Movie Name:</label>

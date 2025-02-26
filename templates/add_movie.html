@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Movie - MovieWeb App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Add Movie</title>
 </head>
 <body>
-    <h1>Add Movie for {{ user.name }}</h1>
-    <form method="post" action="/users/{{ user.id }}/add_movie">
-        <label for="name">Movie Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="director">Director:</label>
-        <input type="text" id="director" name="director" required><br>
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" required><br>
-        <label for="rating">Rating:</label>
-        <input type="number" id="rating" step="0.1" name="rating" required><br>
+    <header>
+        <div class="header">
+            <h1>My Movie Database</h1>
+        </div>
+    </header>
+    <h1>Add Movie</h1>
+    <form method="POST" action="/users/{{ user_id }}/add_movie">
+        <label for="movie_name">Which movie do you want to add?</label>
+        <input type="text" id="movie_name" name="movie_name" required>
         <button type="submit">Add Movie</button>
     </form>
-    <br><a href="/users/{{ user.id }}">Back to Movies</a>
+
+    <div id="movieDetails">
+        {% if movie %}
+        <h2>{{ movie['Title'] }} (added to your movies)</h2>
+        <img src="{{ movie['Poster'] }}" alt="Beschreibung des Bildes">
+
+        <p><strong>Director:</strong> {{ movie['Director'] }}</p>
+        <p><strong>Year:</strong> {{ movie['Year'] }}</p>
+        <p><strong>Rating:</strong> {{ movie['imdbRating'] }}</p>
+        {% endif %}
+    </div>
+
+    <br><a href="/users/{{ user_id }}">Back to Movies</a>
 </body>
 </html>

@@ -19,6 +19,7 @@ class Movie(Base):
     director = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
     rating = Column(Float, nullable=False)
+    poster = Column(String, nullable=True)
     user = relationship('User', back_populates='movies')
 
 class SQLiteDataManager(DataManagerInterface):
@@ -68,9 +69,9 @@ class SQLiteDataManager(DataManagerInterface):
         session.close()
         return movie
 
-    def add_movie(self, user_id, name, director, year, rating):
+    def add_movie(self, user_id, name, director, year, rating, poster):
         session = self.Session()
-        new_movie = Movie(user_id=user_id, name=name, director=director, year=year, rating=rating)
+        new_movie = Movie(user_id=user_id, name=name, director=director, year=year, rating=rating, poster=poster)
         session.add(new_movie)
         session.commit()
         session.refresh(new_movie)

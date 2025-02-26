@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>{{ user.name }}'s Movies - MovieWeb App</title>
 </head>
 <body>
+    <header>
+        <div class="header">
+            <h1>My Movie Database</h1>
+        </div>
+    </header>
     <h1>{{ user.name }}'s Favorite Movies</h1>
     <ul>
         {% for movie in movies %}

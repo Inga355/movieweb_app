@@ -31,7 +31,7 @@ class DataManagerInterface(ABC):
         pass
 
     @abstractmethod
-    def add_movie(self, user_id, name, director, year, rating):
+    def add_movie(self, user_id, name, director, year, rating, poster):
         """Adds a movie to a specific user."""
         pass
 
