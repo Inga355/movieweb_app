@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Add Movie</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>My Movie Database</h1>
+        </div>
+    </header>
+    <h2>Add Movie</h2>
+    <form method="POST" action="/users/{{ user_id }}/add_movie">
+        <label for="movie_name">Which movie do you want to add?</label>
+        <input type="text" id="movie_name" name="movie_name" required>
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <div class="list" id="movieDetails">
+        {% if movie %}
+        <h2>{{ movie['Title'] }} (added to your movies)</h2>
+        <div class="list">
+            <img src="{{ movie['Poster'] }}" alt="Beschreibung des Bildes">
+            <p><strong>Director:</strong> {{ movie['Director'] }}</p>
+            <p><strong>Year:</strong> {{ movie['Year'] }}</p>
+            <p><strong>Rating:</strong> {{ movie['Rating'] }}</p>
+        {% endif %}
+        </div>
+    </div>
+    <div class="buttonline">
+        <a class="fakebutton" href="/users/{{ user_id }}">Back to Movies</a>
+    </div>
+</body>
+</html>
