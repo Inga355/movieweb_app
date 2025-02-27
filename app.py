@@ -80,7 +80,6 @@ def delete_user(user_id):
     return redirect(url_for('home'))
 
 
-
 @app.route('/users/<int:user_id>/add_movie', methods=['GET', 'POST'])
 def add_movie(user_id):
     """
@@ -93,7 +92,6 @@ def add_movie(user_id):
     if request.method == 'POST':
         movie_name = request.form['movie_name']
         movie = fetch_movie_details(movie_name)
-        print(movie)
         if movie:
             db_manager.add_movie(
                 user_id,
