@@ -13,7 +13,7 @@
             <h1>My Movie Database</h1>
         </div>
     </header>
-    <h1>Update Movie for {{ user.name }}</h1>
+    <h2>Update Movie for {{ user.name }}</h2>
     <form method="post" action="/users/{{ user.id }}/update_movie/{{ movie.id }}">
         <label for="name">Movie Name:</label>
         <input type="text" id="name" name="name" value="{{ movie.name }}" required><br>
@@ -25,6 +25,8 @@
         <input type="number" id="rating" step="0.1" name="rating" value="{{ movie.rating }}" required><br>
         <button type="submit">Update Movie</button>
     </form>
-    <br><a href="/users/{{ user.id }}">Back to Movies</a>
+    <div class="buttonline">
+        <a class="fakebutton" href="/users/{{ user.id }}">Back to Movies</a>
+    </div>
 </body>
 </html>

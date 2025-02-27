@@ -13,8 +13,8 @@ OMDB_API_URL = "http://www.omdbapi.com/?apikey={}&t={}"
 def fetch_movie_details(title):
     """
     Fetches movie details from OMDb API.
-    :param: title (str) The title of the movie.
-    :returns: dict A dictionary with movie details (title, year, rating, poster) or None if not found.
+    :param: title (str): The title of the movie.
+    :returns: dict: A dictionary with movie details (title, year, rating, poster) or None if not found.
     """
     response = requests.get(OMDB_API_URL.format(OMDB_API_KEY, title))
     movie_data = response.json()
@@ -64,8 +64,8 @@ def add_movie(user_id):
             db_manager.add_movie(
                 user_id,
                 movie['Title'],
-                movie['Year'],
                 movie['Director'],
+                movie['Year'],
                 movie['Rating'],
                 movie['Poster']
             )
@@ -74,18 +74,6 @@ def add_movie(user_id):
             return "Movie not found!", 404
     user = db_manager.get_user_by_id(user_id)
     return render_template('add_movie.html', user_id=user_id, movie=None)
-
-
-"""@app.route('/users/<int:user_id>/add_movie/submit', methods=['POST'])
-def submit_movie(user_id):
-    db_manager.add_movie(
-        user_id,
-        request.form['name'],
-        request.form['director'],
-        int(request.form['year']),
-        float(request.form['rating'])
-    )
-    return redirect(url_for('user_movies', user_id=user_id))"""
 
 
 @app.route('/users/<int:user_id>/update_movie/<int:movie_id>', methods=['GET', 'POST'])
