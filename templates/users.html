@@ -19,6 +19,7 @@
                 {% for user in users %}
                 <li class="users">
                     <a href="/users/{{ user.id }}">{{ user.name }}</a>
+                    <a href="/users/{{ user.id }}/delete" class="delete-button" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                 </li>
                 {% endfor %}
             </ul>

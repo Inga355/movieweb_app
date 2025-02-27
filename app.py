@@ -67,6 +67,21 @@ def add_user():
     return render_template('add_user.html')
 
 
+@app.route('/users/<int:user_id>/delete')
+def delete_user(user_id):
+    """
+    Deletes a user and redirects to the home page.
+
+    :param user_id: The ID of the user to delete.
+    :type user_id: int
+    :return: Redirects to the home page.
+    :rtype: flask.Response
+    """
+    db_manager.delete_user(user_id)
+    return redirect(url_for('home'))
+
+
+
 @app.route('/users/<int:user_id>/add_movie', methods=['GET', 'POST'])
 def add_movie(user_id):
     """
