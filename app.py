@@ -5,8 +5,7 @@ import os
 
 app = Flask(__name__)
 db_manager = SQLiteDataManager('data/movieapp.db')
-OMDB_API_KEY = "319c869"
-#OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
 OMDB_API_URL = "http://www.omdbapi.com/?apikey={}&t={}"
 
 
