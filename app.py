@@ -33,12 +33,21 @@ def fetch_movie_details(title):
 
 @app.route('/')
 def home():
+    """
+    Renders the homepage displaying all users.
+    :return: Rendered template for the homepage.
+    """
     users = db_manager.get_all_users()
     return render_template('users.html', users=users)
 
 
 @app.route('/users/<int:user_id>')
 def user_movies(user_id):
+    """
+    Displays all movies of a specific user.
+    :param: user_id (int): The ID of the user.
+    :return: Rendered template displaying user's movies.
+    """
     user = db_manager.get_user_by_id(user_id)
     movies = db_manager.get_user_movies(user_id)
     return render_template('user_movies.html', user=user, movies=movies)
@@ -46,6 +55,11 @@ def user_movies(user_id):
 
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
+    """
+    Handles adding a new user.
+    Displays a form (GET) and processes form submission (POST).
+    :return: Redirects to home page after user creation or renders the form.
+    """
     if request.method == 'POST':
         name = request.form['name']
         db_manager.add_user(name)
@@ -55,6 +69,12 @@ def add_user():
 
 @app.route('/users/<int:user_id>/add_movie', methods=['GET', 'POST'])
 def add_movie(user_id):
+    """
+    Handles adding a new movie for a user.
+    Fetches movie details from OMDb API and saves the movie in the database.
+    :param: user_id (int): The ID of the user who is adding the movie.
+    :return: Rendered template displaying the add movie page.
+    """
     movie = None
     if request.method == 'POST':
         movie_name = request.form['movie_name']
@@ -78,6 +98,13 @@ def add_movie(user_id):
 
 @app.route('/users/<int:user_id>/update_movie/<int:movie_id>', methods=['GET', 'POST'])
 def update_movie(user_id, movie_id):
+    """
+    Handles updating an existing movie for a user.
+    Fetches the current movie details and allows editing.
+    :param: user_id (int): The ID of the user.
+    :param: movie_id (int): The ID of the movie to update.
+    :return: Redirects to user's movie page after update or renders the form.
+    """
     movie = db_manager.get_movie_by_id(movie_id)
     if request.method == 'POST':
         db_manager.update_movie(
@@ -94,6 +121,12 @@ def update_movie(user_id, movie_id):
 
 @app.route('/users/<int:user_id>/delete_movie/<int:movie_id>')
 def delete_movie(user_id, movie_id):
+    """
+    Handles deleting a movie from a user's list.
+    :param: user_id (int): The ID of the user.
+    :param: movie_id (int): The ID of the movie to delete.
+    :return:
+    """
     db_manager.delete_movie(movie_id)
     return redirect(url_for('user_movies', user_id=user_id))
 
