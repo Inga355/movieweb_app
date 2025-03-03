@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 db_manager = SQLiteDataManager('data/movieapp.db')
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")
-OMDB_API_URL = "http://www.omdbapi.com/?apikey={}&t={}"
+OMDB_API_URL = "http://www.omdbapi.com/?apikey={OMDB_API_KEY}&t={{}}"
 
 
 def fetch_movie_details(title):
@@ -15,7 +15,7 @@ def fetch_movie_details(title):
     :param: title (str): The title of the movie.
     :returns: dict: A dictionary with movie details (title, year, rating, poster) or None if not found.
     """
-    response = requests.get(OMDB_API_URL.format(OMDB_API_KEY, title))
+    response = requests.get(OMDB_API_URL.format(title))
     movie_data = response.json()
 
     if movie_data.get("Response") == "True":
